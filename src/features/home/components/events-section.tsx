@@ -1,11 +1,19 @@
 import { Container } from "@/components/layout/container";
 
-import { eventDateParts } from "@/lib/formatters/date";
-import { events } from "@/mocks/events";
+import { EventRow } from "@/features/events/components/event-row";
+import { listAllEvents } from "@/features/events/utils/query-events";
+import { 
+  DEFAULT_EVENT_FILTERS, 
+  getEventStatus, 
+  listEvents 
+} from "@/features/events/utils/status";
+
+import { getToday } from "@/lib/utils/today";
 
 import { SectionHeading } from "./section-heading";
 
-export function EventsSection() {
+
+function Shell({ children }: { children: React.ReactNode }) {
   return (
     <section aria-labelledby="eventos-title" className="bg-sand/45 py-20 md:py-28">
       <Container className="grid gap-12 lg:grid-cols-12">
@@ -18,31 +26,38 @@ export function EventsSection() {
             linkLabel="Ver todos os eventos"
           />
         </div>
-        <ul className="lg:col-span-8">
-          {events.map((event) => {
-            const { day, month, weekday } = eventDateParts(event.date);
-            return (
-              <li
-                key={event.id}
-                className="grid grid-cols-[4.5rem_1fr] gap-6 border-t border-ink/25 py-6 last:border-b md:grid-cols-[6rem_1fr]"
-              >
-                <time dateTime={event.date} className="block">
-                  <span className="block font-display text-5xl leading-none md:text-6xl">{day}</span>
-                  <span className="mt-1 block text-sm text-ink/75">{month}</span>
-                </time>
-                <div>
-                  <h3 className="text-2xl">{event.title}</h3>
-                  <p className="mt-1 text-sm font-semibold text-olive-deep">
-                    {event.province}, {weekday}
-                  </p>
-                  <p className="mt-2 max-w-xl text-ink/80">{event.summary}</p>
-                  <p className="mt-2 text-sm text-ink/70">Evento fictício</p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="lg:col-span-8">{children}</div>
       </Container>
     </section>
+  );
+}
+
+export async function EventsSection() {
+  const today = await getToday();
+  const all = await listAllEvents();
+  const { upcoming } = listEvents(all, DEFAULT_EVENT_FILTERS, today);
+
+  return (
+    <Shell>
+      {upcoming.length === 0 ? (
+        <p className="text-lg text-ink/80">Não há eventos próximos de momento.</p>
+      ) : (
+        <ul>
+          {upcoming.slice(0, 4).map((event) => (
+            <EventRow key={event.id} event={event} status={getEventStatus(event.date, today)} />
+          ))}
+        </ul>
+      )}
+    </Shell>
+  );
+}
+
+export function EventsSectionFallback() {
+  return (
+    <Shell>
+      <p role="status" className="text-ink/70">
+        A carregar eventos...
+      </p>
+    </Shell>
   );
 }
