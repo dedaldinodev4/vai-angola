@@ -1,18 +1,17 @@
-import Link from "next/link";
 import { Container } from "@/components/layout/container";
-import { DemoArt } from "@/components/media/demo-art";
 
 import { destinationRepository } from "@/features/destinations/repositories/destination-repository";
-import { experiences } from "@/mocks/experiences";
+import { ExperienceCard } from "@/features/experiences/components/experience-card";
+import { listExperiences } from "@/features/experiences/utils/queries";
 
 import { SectionHeading } from "./section-heading";
+
 
 const OFFSETS = ["", "lg:mt-12", "", "lg:mt-12"] as const;
 
 export async function ExperiencesSection() {
-  const destinations = await Promise.all(
-    experiences.map((experience) => destinationRepository.getBySlug(experience.destinationSlug)),
-  );
+  const [experiences, destinations] = await Promise.all([listExperiences(), destinationRepository.list()]);
+  const bySlug = new Map(destinations.map((d) => [d.slug, d]));
 
   return (
     <section aria-labelledby="experiencias-title" className="py-20 md:py-28">
@@ -25,31 +24,14 @@ export async function ExperiencesSection() {
           linkLabel="Ver todas as experiências"
         />
         <ul className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-          {experiences.map((experience, index) => {
-            const destination = destinations[index];
-            return (
-              <li key={experience.id} className={OFFSETS[index % OFFSETS.length]}>
-                <DemoArt
-                  scene={experience.art.scene}
-                  tone={experience.art.tone}
-                  label={experience.title}
-                  className="aspect-3/4 w-full rounded-sm"
-                />
-                <h3 className="mt-4 text-2xl">{experience.title}</h3>
-                <p className="mt-2 text-ink/80">{experience.summary}</p>
-                {destination && (
-                  <Link
-                    href={`/destinations/${destination.slug}`}
-                    className="mt-3 inline-block font-semibold text-terracotta-deep underline decoration-2 underline-offset-4 hover:text-ink"
-                  >
-                    Ver {destination.name}
-                  </Link>
-                )}
-              </li>
-            );
-          })}
+          {experiences.slice(0, 4).map((experience, index) => (
+            <li key={experience.id} className={OFFSETS[index % OFFSETS.length]}>
+              <ExperienceCard experience={experience} destination={bySlug.get(experience.destinationSlug)} />
+            </li>
+          ))}
         </ul>
       </Container>
     </section>
   );
 }
+
