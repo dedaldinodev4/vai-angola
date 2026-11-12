@@ -1,13 +1,19 @@
-import { Container } from "@/components/layout/container";
+import { Hero } from "@/features/home/components/hero";
+import { FeaturedDestinations } from "@/features/home/components/featured-destinations";
+import { ProvinceDiscovery } from "@/features/home/components/province-discovery";
+import { ExperiencesSection } from "@/features/home/components/experiences-section";
+import { EventsSection } from "@/features/home/components/events-section";
+import { StoriesSection } from "@/features/home/components/stories-section";
 
 export default function HomePage() {
   return (
-    <Container className="py-20 md:py-32">
-      <h1 className="max-w-4xl">Descobre mais. Vive Angola.</h1>
-      <p className="mt-6 max-w-xl text-lg text-ink/80">
-        A página inicial editorial chega na próxima fase. Por agora, está pronta a estrutura: cores,
-        tipografia, cabeçalho e rodapé.
-      </p>
-    </Container>
+    <>
+      <Hero />
+      <FeaturedDestinations />
+      <ProvinceDiscovery />
+      <ExperiencesSection />
+      <EventsSection />
+      <StoriesSection />
+    </>
   );
 }
