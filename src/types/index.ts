@@ -49,15 +49,13 @@ export type Experience = {
 };
 
 //* Articles *//
-
 export type Article = {
   id: string;
   slug: string;
   title: string;
   excerpt: string;
-  /** Data ISO (AAAA-MM-DD). */
+  body: string[];
   publishedAt: string;
-  readingMinutes: number;
   author: string;
   destinationSlug: string;
   art: { scene: DemoScene; tone: DemoTone };
