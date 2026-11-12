@@ -1,28 +1,19 @@
+import { provinceSlugOf, type ProvinceName, type ProvinceSlug } from "@/lib/constants/provinces";
 import type { Destination } from "@/types";
 
 export type ProvinceSummary = {
-  name: string;
-  slug: string;
+  name: Destination["province"];
+  slug: ProvinceSlug;
   count: number;
 };
 
-/** "Huíla" -> "huila" */
-export function provinceSlug(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-");
-}
-
 /** Províncias que têm destinos, ordenadas alfabeticamente (pt). */
 export function summarizeProvinces(items: readonly Destination[]): ProvinceSummary[] {
-  const counts = new Map<string, number>();
+  const counts = new Map<Destination["province"], number>();
   for (const item of items) {
     counts.set(item.province, (counts.get(item.province) ?? 0) + 1);
   }
   return [...counts.entries()]
-    .map(([name, count]) => ({ name, slug: provinceSlug(name), count }))
+    .map(([name, count]) => ({ name, slug: provinceSlugOf(name as ProvinceName), count }))
     .sort((a, b) => a.name.localeCompare(b.name, "pt"));
 }

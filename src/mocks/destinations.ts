@@ -10,7 +10,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Uma cortina de água que cai sobre o rio Lucala, no meio de vegetação densa. É um lugar para chegar sem pressa, ouvir a água e ver a paisagem mudar com a luz do dia.",
     province: "Malanje",
-    categories: ["natureza", "aventura"],
+    categories: ["nature", "adventure"],
     activities: ["Fotografia", "Caminhada curta", "Piquenique"],
     art: { scene: "falls", tone: 2 },
     featured: true,
@@ -25,7 +25,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Um miradouro à beira de uma escarpa onde o planalto termina de repente e a vista se abre para a planície. Pede agasalho, boa luz e um tempo para simplesmente olhar.",
     province: "Huíla",
-    categories: ["natureza", "aventura"],
+    categories: ["nature", "adventure"],
     activities: ["Miradouro", "Fotografia", "Caminhada"],
     art: { scene: "cliffs", tone: 1 },
     featured: true,
@@ -40,7 +40,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Uma paisagem de ravinas e formas esculpidas pela erosão, com tons de terra que mudam ao fim da tarde. Fica perto da cidade e funciona bem como saída de meio dia.",
     province: "Luanda",
-    categories: ["natureza"],
+    categories: ["nature"],
     activities: ["Pôr do sol", "Fotografia"],
     art: { scene: "moon", tone: 0 },
     featured: false,
@@ -55,7 +55,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Uma língua de areia em frente à baía, associada a passeios de barco, praia calma e almoços de peixe à beira-mar. Boa ideia para um dia inteiro fora do ritmo da cidade.",
     province: "Luanda",
-    categories: ["praia"],
+    categories: ["beach"],
     activities: ["Passeio de barco", "Praia", "Gastronomia"],
     art: { scene: "coast", tone: 0 },
     featured: true,
@@ -70,7 +70,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Uma fortificação sobre a baía que ajuda a ler a história da cidade. A visita combina muralhas, vistas abertas para o mar e espaços de memória.",
     province: "Luanda",
-    categories: ["historia", "cultura"],
+    categories: ["history", "culture"],
     activities: ["Visita guiada", "Fotografia", "Museu"],
     art: { scene: "fort", tone: 2 },
     featured: true,
@@ -85,7 +85,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Uma faixa de praia dentro da cidade, ideal para caminhar ao fim da tarde, comer algo junto ao mar e ver a vida local acontecer.",
     province: "Benguela",
-    categories: ["praia", "cultura"],
+    categories: ["beach", "culture"],
     activities: ["Passeio", "Praia", "Gastronomia"],
     art: { scene: "coast", tone: 1 },
     featured: false,
@@ -100,7 +100,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Grandes formações de rocha escura que se erguem da planície e estão ligadas a histórias da região. Um lugar para caminhar, subir com calma e imaginar outros tempos.",
     province: "Malanje",
-    categories: ["natureza", "historia", "aventura"],
+    categories: ["nature", "history", "adventure"],
     activities: ["Caminhada", "Fotografia"],
     art: { scene: "rocks", tone: 0 },
     featured: true,
@@ -115,7 +115,7 @@ export const destinations: readonly Destination[] = [
     description:
       "Uma estrada em curvas apertadas a descer a serra, imagem muito reconhecível do sul do país. Vale parar nos pontos de vista e olhar para o desenho da estrada na paisagem.",
     province: "Huíla",
-    categories: ["natureza", "aventura"],
+    categories: ["nature", "adventure"],
     activities: ["Miradouro", "Viagem de carro", "Fotografia"],
     art: { scene: "cliffs", tone: 0 },
     featured: false,

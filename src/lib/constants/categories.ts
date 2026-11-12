@@ -1,9 +1,9 @@
 export const CATEGORIES = [
-  { id: "natureza", label: "Natureza" },
-  { id: "praia", label: "Praia" },
-  { id: "cultura", label: "Cultura" },
-  { id: "historia", label: "História" },
-  { id: "aventura", label: "Aventura" },
+  { id: "nature", label: "Natureza" },
+  { id: "beach", label: "Praia" },
+  { id: "culture", label: "Cultura" },
+  { id: "history", label: "História" },
+  { id: "adventure", label: "Aventura" },
 ] as const;
 
 export type CategoryId = (typeof CATEGORIES)[number]["id"];

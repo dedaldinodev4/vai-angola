@@ -1,9 +1,11 @@
+import type { CategoryId } from "@/lib/constants/categories";
+import type { ProvinceName } from "@/lib/constants/provinces";
 
 export type DemoScene = "falls" | "cliffs" | "moon" | "coast" | "fort" | "rocks";
 export type DemoTone = 0 | 1 | 2;
 
 //* Destinations *//
-export type DestinationCategory = "natureza" | "praia" | "cultura" | "historia" | "aventura";
+export type DestinationCategory = CategoryId;
 
 export type Destination = {
   id: string;
@@ -11,15 +13,15 @@ export type Destination = {
   name: string;
   shortDescription: string;
   description: string;
-  province: string;
+  province: ProvinceName;
   categories: DestinationCategory[];
   activities: string[];
-  /** Ilustração de demonstração; passa a `coverImage`/`gallery` com fotografias reais. */
   art: { scene: DemoScene; tone: DemoTone };
   featured: boolean;
   published: boolean;
   isDemo: true;
 };
+
 
 //* Events *//
 export type AppEvent = {
