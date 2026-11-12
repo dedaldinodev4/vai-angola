@@ -2,8 +2,8 @@
  * Ilustrações de demonstração (SVG plano) que ocupam o lugar das fotografias.
  * Substituir por imagens reais (next/image) quando existirem direitos e ficheiros.
  */
-export type DemoScene = "falls" | "cliffs" | "moon" | "coast" | "fort" | "rocks";
-export type DemoTone = 0 | 1 | 2;
+
+import type { DemoTone, DemoScene } from "@/types";
 
 const SKY: Record<DemoTone, string> = {
   0: "fill-sand",
