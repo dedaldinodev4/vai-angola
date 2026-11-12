@@ -28,13 +28,15 @@ export type AppEvent = {
   id: string;
   slug: string;
   title: string;
-  /** Data ISO (AAAA-MM-DD), interpretada em UTC. */
   date: string;
-  province: string;
+  province: ProvinceName;
   summary: string;
-  /** Evento fictício criado para demonstração. */
+  description: string;
+  destinationSlug?: string;
   isDemo: true;
 };
+
+export type EventStatus = "upcoming" | "today" | "past";
 
 //* Experiences *//
 export type Experience = {
