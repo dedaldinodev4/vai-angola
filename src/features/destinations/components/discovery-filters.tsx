@@ -34,7 +34,7 @@ export function DiscoveryFilters({ query }: { query: DiscoveryQuery }) {
           <label htmlFor="f-provincia" className="font-semibold">
             Província
           </label>
-          <select id="f-provincia" name="provincia" defaultValue={query.province ?? ""} className={fieldClass}>
+          <select id="f-provincia" name="province" defaultValue={query.province ?? ""} className={fieldClass}>
             <option value="">Todas as províncias</option>
             {PROVINCES.map((p) => (
               <option key={p.slug} value={p.slug}>
@@ -47,7 +47,7 @@ export function DiscoveryFilters({ query }: { query: DiscoveryQuery }) {
           <label htmlFor="f-ordem" className="font-semibold">
             Ordenar por
           </label>
-          <select id="f-ordem" name="ordem" defaultValue={query.sort} className={fieldClass}>
+          <select id="f-ordem" name="order" defaultValue={query.sort} className={fieldClass}>
             {SORT_OPTIONS.map((o) => (
               <option key={o.id} value={o.id}>
                 {o.label}
@@ -64,7 +64,7 @@ export function DiscoveryFilters({ query }: { query: DiscoveryQuery }) {
             <label key={c.id} className="flex min-h-11 items-center gap-2">
               <input
                 type="checkbox"
-                name="categoria"
+                name="category"
                 value={c.id}
                 defaultChecked={query.categories.includes(c.id)}
                 className="size-5 accent-terracotta-deep"
@@ -78,7 +78,7 @@ export function DiscoveryFilters({ query }: { query: DiscoveryQuery }) {
       <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
         <button
           type="submit"
-          className="inline-flex min-h-12 items-center rounded-md bg-terracotta-deep px-7 font-semibold text-white transition-colors duration-(--duration-fast) hover:bg-ink"
+          className="cursor-pointer inline-flex min-h-12 items-center rounded-md bg-terracotta-deep px-7 font-semibold text-white transition-colors duration-(--duration-fast) hover:bg-ink"
         >
           Aplicar filtros
         </button>
