@@ -1,7 +1,8 @@
 import { Container } from "@/components/layout/container";
 
 import { DestinationCard } from "@/features/destinations/components/destination-card";
-import { getFeaturedDestinations } from "@/features/destinations/services/destinations.service";
+import { destinationRepository } from "@/features/destinations/repositories/destination-repository";
+
 import { SectionHeading } from "./section-heading";
 
 /** Composição assimétrica: tamanho e deslocamento por posição (só em ecrãs largos). */
@@ -13,8 +14,9 @@ const LAYOUT = [
   { wrapper: "lg:col-span-4 lg:mt-24", image: "aspect-[4/5]", large: false },
 ] as const;
 
-export function FeaturedDestinations() {
-  const featured = getFeaturedDestinations().slice(0, LAYOUT.length);
+export async function FeaturedDestinations() {
+  const featured = (await destinationRepository.listFeatured()).slice(0, LAYOUT.length);
+
 
   return (
     <section aria-labelledby="destaques-title" className="py-20 md:py-28">

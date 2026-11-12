@@ -2,14 +2,18 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { DemoArt } from "@/components/media/demo-art";
 
-import { getDestinationBySlug } from "@/features/destinations/services/destinations.service";
+import { destinationRepository } from "@/features/destinations/repositories/destination-repository";
 import { experiences } from "@/mocks/experiences";
 
 import { SectionHeading } from "./section-heading";
 
 const OFFSETS = ["", "lg:mt-12", "", "lg:mt-12"] as const;
 
-export function ExperiencesSection() {
+export async function ExperiencesSection() {
+  const destinations = await Promise.all(
+    experiences.map((experience) => destinationRepository.getBySlug(experience.destinationSlug)),
+  );
+
   return (
     <section aria-labelledby="experiencias-title" className="py-20 md:py-28">
       <Container>
@@ -22,7 +26,7 @@ export function ExperiencesSection() {
         />
         <ul className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {experiences.map((experience, index) => {
-            const destination = getDestinationBySlug(experience.destinationSlug);
+            const destination = destinations[index];
             return (
               <li key={experience.id} className={OFFSETS[index % OFFSETS.length]}>
                 <DemoArt
