@@ -28,7 +28,7 @@ export async function EventsContent({ searchParams }: { searchParams: Promise<Ra
             <label htmlFor="e-provincia" className="font-semibold">
               Província
             </label>
-            <select id="e-provincia" name="provincia" defaultValue={filters.province ?? ""} className={fieldClass}>
+            <select id="e-provincia" name="province" defaultValue={filters.province ?? ""} className={fieldClass}>
               <option value="">Todas as províncias</option>
               {PROVINCES.map((p) => (
                 <option key={p.slug} value={p.slug}>
@@ -40,7 +40,7 @@ export async function EventsContent({ searchParams }: { searchParams: Promise<Ra
           <label className="flex min-h-11 items-center gap-2 md:col-span-4">
             <input
               type="checkbox"
-              name="passados"
+              name="pastEvents"
               value="1"
               defaultChecked={filters.includePast}
               className="size-5 accent-terracotta-deep"
