@@ -32,7 +32,7 @@ export async function ExperiencesContent({ searchParams }: { searchParams: Promi
           <label htmlFor="x-provincia" className="font-semibold">
             Província
           </label>
-          <select id="x-provincia" name="provincia" defaultValue={filters.province ?? ""} className={fieldClass}>
+          <select id="x-provincia" name="province" defaultValue={filters.province ?? ""} className={fieldClass}>
             <option value="">Todas as províncias</option>
             {PROVINCES.map((p) => (
               <option key={p.slug} value={p.slug}>
@@ -48,7 +48,7 @@ export async function ExperiencesContent({ searchParams }: { searchParams: Promi
               <label key={c.id} className="flex min-h-11 items-center gap-2">
                 <input
                   type="checkbox"
-                  name="categoria"
+                  name="category"
                   value={c.id}
                   defaultChecked={filters.categories.includes(c.id)}
                   className="size-5 accent-terracotta-deep"
